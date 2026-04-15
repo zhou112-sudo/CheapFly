@@ -1,5 +1,15 @@
 # TicketPlatform 变更记录
 
+## 2026-04-15 生产环境无后端时可纯前端 mock 搜索
+
+### 修改内容
+- 新增 `frontend/src/api/clientMockSearch.js`：按起终点机场码、日期、舱位生成稳定示意航班列表，结构与 `/search` 响应兼容。
+- `searchFlights`：在 **生产构建** 且 **未配置 `VITE_API_BASE`** 时自动走客户端 mock，**不发起网络请求**，便于 Vercel 纯静态演示。
+- 可选环境变量：`VITE_USE_CLIENT_MOCK=1` 强制使用 mock（便于本地验证）；`VITE_DISABLE_CLIENT_MOCK=1` 在生产禁用 mock（仍无后端时会继续走 `/api` 并可能报错）。
+
+### 修改原因
+- 用户暂无线上后端地址时，仍希望部署站点可完成「搜索 → 结果页」演示链路，而不依赖外部 API。
+
 ## 2026-04-15 搜索接口非 JSON 响应提示优化
 
 ### 修改内容

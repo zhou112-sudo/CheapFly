@@ -1,3 +1,5 @@
+import { buildClientMockSearchPayload } from "./clientMockSearch";
+
 /**
  * 规范化后端基址，避免 `fetch("example.com/...")` 这类缺少协议的字符串在 Safari 下抛出
  * `The string did not match the expected pattern`。
@@ -17,10 +19,27 @@ function searchUrl(queryString) {
   return `${base}/search?${queryString}`;
 }
 
+/** 无 VITE_API_BASE 的生产环境：纯前端示意数据，不发起网络请求 */
+function shouldUseClientMock() {
+  if (import.meta.env.VITE_DISABLE_CLIENT_MOCK === "1") return false;
+  if (import.meta.env.VITE_USE_CLIENT_MOCK === "1") return true;
+  if (!import.meta.env.PROD) return false;
+  return !normalizeApiBase(import.meta.env.VITE_API_BASE ?? "");
+}
+
 /**
  * @param {{ originAirports: string, destinationAirports: string, departureDate: string, cabinClass?: string }} params
  */
 export async function searchFlights({ originAirports, destinationAirports, departureDate, cabinClass = "economy" }) {
+  if (shouldUseClientMock()) {
+    return buildClientMockSearchPayload({
+      originAirports,
+      destinationAirports,
+      departureDate,
+      cabinClass,
+    });
+  }
+
   const qs = new URLSearchParams({
     origin_airports: originAirports.trim(),
     destination_airports: destinationAirports.trim(),
