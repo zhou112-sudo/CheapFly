@@ -1,5 +1,14 @@
 # TicketPlatform 变更记录
 
+## 2026-04-15 搜索请求地址规范化（修复 Safari “expected pattern” 报错）
+
+### 修改内容
+- `searchFlights` 对 `VITE_API_BASE` 做规范化：自动补全 `http(s)://`，本地 `localhost` / `127.0.0.1` 默认走 `http`。
+- 在发起 `fetch` 前用 `URL` 校验最终地址；若仍不合法，给出明确中文提示；并对 WebKit 抛出的 `did not match the expected pattern` 转为可读中文说明。
+
+### 修改原因
+- 当环境变量里只写了域名（无协议）或拼接出非法 URL 时，部分浏览器会在 `fetch` 阶段直接抛出该 DOMException；用户误以为是搜索逻辑问题，实际是接口基址配置问题。
+
 ## 2026-04-15 Vercel 部署：根目录无前端 package 导致构建失败
 
 ### 修改内容
