@@ -1,5 +1,14 @@
 # TicketPlatform 变更记录
 
+## 2026-04-15 线上搜索失败：SPA 重写吞掉 /api 与 Safari JSON 解析
+
+### 修改内容
+- `vercel.json`：SPA 回写规则改为排除以 `/api` 开头的路径，避免 `/api/search` 被重写到 `index.html`（否则返回 HTML，`res.json()` 在 Safari 下常报 `The string did not match the expected pattern`）。
+- `searchFlights`：统一先 `res.text()` 再解析；若正文为 HTML 或非法 JSON，抛出明确中文说明，提示配置 `VITE_API_BASE` 或部署可访问的搜索接口。
+
+### 修改原因
+- 纯静态部署时若未单独托管后端，浏览器请求 `/api/search` 易被 SPA 兜底规则当成前端路由，返回首页 HTML；Safari 对「把 HTML 当 JSON 解析」会抛出上述英文异常，用户误以为搜索逻辑损坏。
+
 ## 2026-04-15 搜索请求地址规范化（修复 Safari “expected pattern” 报错）
 
 ### 修改内容

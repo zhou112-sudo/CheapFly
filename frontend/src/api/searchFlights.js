@@ -53,15 +53,39 @@ export async function searchFlights({ originAirports, destinationAirports, depar
     }
     throw e instanceof Error ? e : new Error(msg);
   }
+  const text = await res.text();
+
+  const parseJsonSafely = () => {
+    const trimmed = text.trim();
+    if (!trimmed) {
+      throw new Error("接口返回为空，请确认后端已部署且地址正确。");
+    }
+    if (trimmed.startsWith("<")) {
+      throw new Error(
+        "搜索接口返回了网页而不是数据：线上通常未配置后端，或 /api 被误指到静态页面。请在部署环境设置 VITE_API_BASE 为完整 API 地址（如 https://你的后端域名），并确保该地址可访问 /search。"
+      );
+    }
+    try {
+      return JSON.parse(trimmed);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      if (msg.includes("did not match the expected pattern")) {
+        throw new Error("接口返回内容无法解析为 JSON（常见于返回了 HTML）。请检查 VITE_API_BASE 与线上 /api 路由是否正确。");
+      }
+      throw new Error(`接口返回格式异常：${msg}`);
+    }
+  };
+
   if (!res.ok) {
     let detail = res.statusText;
     try {
-      const body = await res.json();
-      if (body.detail) detail = JSON.stringify(body.detail);
-    } catch {
-      /* ignore */
+      const body = parseJsonSafely();
+      if (body?.detail) detail = JSON.stringify(body.detail);
+    } catch (e) {
+      if (e instanceof Error && e.message.length > 20) detail = e.message;
     }
     throw new Error(detail || `请求失败 (${res.status})`);
   }
-  return res.json();
+
+  return parseJsonSafely();
 }
