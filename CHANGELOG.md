@@ -1,5 +1,13 @@
 # TicketPlatform 变更记录
 
+## 2026-04-15 搜索接口非 JSON 响应提示优化
+
+### 修改内容
+- 当搜索接口正文不是 `{` / `[` 开头时（例如网关返回英文句子 “The …”），不再仅展示底层 `JSON.parse` 英文报错，改为统一中文说明并提示检查 `VITE_API_BASE` 与本地 `/api` 代理。
+
+### 修改原因
+- 线上未命中真实 API 时常返回纯文本/HTML，用户看到 `Unexpected identifier "The"` 难以理解根因。
+
 ## 2026-04-15 线上搜索失败：SPA 重写吞掉 /api 与 Safari JSON 解析
 
 ### 修改内容

@@ -72,6 +72,12 @@ export async function searchFlights({ originAirports, destinationAirports, depar
       if (msg.includes("did not match the expected pattern")) {
         throw new Error("接口返回内容无法解析为 JSON（常见于返回了 HTML）。请检查 VITE_API_BASE 与线上 /api 路由是否正确。");
       }
+      // 网关 / CDN / 404 纯文本常以 "The ..." 开头，JSON.parse 会报 Unexpected identifier
+      if (!trimmed.startsWith("{") && !trimmed.startsWith("[")) {
+        throw new Error(
+          "接口未返回 JSON（多为错误页纯文本或英文说明，例如以 “The …” 开头）。线上请在 Vercel 配置可访问的后端地址 VITE_API_BASE，并保证 /search 返回 JSON；本地请启动后端并使用 npm run dev 以走 /api 代理。"
+        );
+      }
       throw new Error(`接口返回格式异常：${msg}`);
     }
   };
