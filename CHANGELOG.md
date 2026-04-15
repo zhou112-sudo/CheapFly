@@ -7,9 +7,11 @@
   - `installCommand` / `buildCommand` 在 `frontend` 目录执行 `npm ci` 与 `npm run build`
   - `outputDirectory` 指向 `frontend/dist`
   - 增加 SPA 路由回写，避免直接访问 `/explore`、`/deal/:id` 等子路径刷新 404
+- 补充 `framework: null`，避免 Vercel 将仓库误判为 **Next.js** 并检查根目录 `next` 依赖（本项目为 **Vite + React**，`next` 不存在于 `frontend/package.json` 时即报错）。
 
 ### 修改原因
 - 项目为「根目录 + `frontend/` 子目录」结构，Vercel 默认在仓库根执行安装与构建，找不到根级 `package.json` 或构建产物不在默认路径时会失败；显式配置后可稳定部署前端静态站点。
+- 子目录前端在部分检测逻辑下会被误判为 Next 项目，需显式关闭框架预设，仅使用自定义 install/build + 静态输出目录。
 
 ## 2026-04-14 结果页新增往返模式（组合结构）
 
