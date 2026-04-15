@@ -1,5 +1,16 @@
 # TicketPlatform 变更记录
 
+## 2026-04-15 Vercel 部署：根目录无前端 package 导致构建失败
+
+### 修改内容
+- 在仓库根目录新增 `vercel.json`：
+  - `installCommand` / `buildCommand` 在 `frontend` 目录执行 `npm ci` 与 `npm run build`
+  - `outputDirectory` 指向 `frontend/dist`
+  - 增加 SPA 路由回写，避免直接访问 `/explore`、`/deal/:id` 等子路径刷新 404
+
+### 修改原因
+- 项目为「根目录 + `frontend/` 子目录」结构，Vercel 默认在仓库根执行安装与构建，找不到根级 `package.json` 或构建产物不在默认路径时会失败；显式配置后可稳定部署前端静态站点。
+
 ## 2026-04-14 结果页新增往返模式（组合结构）
 
 ### 修改内容
