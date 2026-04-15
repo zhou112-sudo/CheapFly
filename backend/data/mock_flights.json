@@ -1,0 +1,192 @@
+{
+  "flights": [
+    {
+      "id": "demo-pek-pvg-1",
+      "origin": "PEK",
+      "destination": "PVG",
+      "airlineName": "中国国航",
+      "airline": "CA",
+      "flightNumber": "CA1501",
+      "depTime": "08:05",
+      "arrTime": "10:20",
+      "route_label": "PEK→PVG",
+      "routeLabelVisual": "北京首都 → 上海浦东",
+      "stops": 0,
+      "price_cny": 820,
+      "cabin_prices": {
+        "economy": 820,
+        "premium_economy": 980,
+        "business": 1520,
+        "first": 1980
+      },
+      "source": "demo",
+      "durationLabel": "2小时 15 分",
+      "baggageIncluded": true,
+      "refundLabel": "起飞前 4 小时前可退（示例）",
+      "changeLabel": "同舱改期收手续费（示例）",
+      "originTerminal": "T3",
+      "destTerminal": "T2",
+      "originGate": "C18",
+      "destGate": "D52",
+      "preview": {
+        "durationLabel": "2 小时 15 分",
+        "originAirportLine": "北京首都国际机场（PEK）",
+        "destAirportLine": "上海浦东国际机场（PVG）",
+        "originTerminal": "T3",
+        "destTerminal": "T2",
+        "originGate": "C18",
+        "destGate": "D52",
+        "baggageIncluded": true,
+        "legs": []
+      }
+    },
+    {
+      "id": "demo-pek-pvg-2",
+      "origin": "PEK",
+      "destination": "PVG",
+      "airlineName": "中国东航",
+      "airline": "MU",
+      "flightNumber": "MU5100",
+      "depTime": "12:30",
+      "arrTime": "14:45",
+      "route_label": "PEK→PVG",
+      "routeLabelVisual": "北京首都 → 上海浦东",
+      "stops": 0,
+      "price_cny": 865,
+      "cabin_prices": {
+        "economy": 865,
+        "premium_economy": 1030,
+        "business": 1610,
+        "first": 2090
+      },
+      "source": "ctrip",
+      "durationLabel": "2 小时 15 分",
+      "baggageIncluded": true,
+      "refundLabel": "按舱位规则（示例）",
+      "changeLabel": "有条件改签（示例）",
+      "originTerminal": "T2",
+      "destTerminal": "T1",
+      "originGate": "E07",
+      "destGate": "H11",
+      "preview": {
+        "durationLabel": "2 小时 15 分",
+        "originAirportLine": "北京首都国际机场（PEK）",
+        "destAirportLine": "上海浦东国际机场（PVG）",
+        "originTerminal": "T2",
+        "destTerminal": "T1",
+        "originGate": "E07",
+        "destGate": "H11",
+        "legs": []
+      }
+    },
+    {
+      "id": "demo-pek-pvg-3",
+      "origin": "PEK",
+      "destination": "PVG",
+      "airlineName": "中国南航",
+      "airline": "CZ",
+      "flightNumber": "CZ8888",
+      "depTime": "19:15",
+      "arrTime": "23:40",
+      "route_label": "PEK→CAN→PVG",
+      "routeLabelVisual": "北京首都 → 广州白云 → 上海浦东",
+      "stops": 1,
+      "price_cny": 640,
+      "cabin_prices": {
+        "economy": 640,
+        "premium_economy": 790,
+        "business": 1280,
+        "first": 1680
+      },
+      "source": "qunar",
+      "durationLabel": "4 小时 25 分",
+      "baggageIncluded": false,
+      "refundLabel": "特价舱不可退（示例）",
+      "changeLabel": "不可改签（示例）",
+      "originTerminal": "T2",
+      "destTerminal": "T2",
+      "originGate": "F22",
+      "destGate": "K05",
+      "preview": {
+        "durationLabel": "4 小时 25 分",
+        "originAirportLine": "北京首都国际机场（PEK）",
+        "destAirportLine": "上海浦东国际机场（PVG）",
+        "originTerminal": "T2",
+        "destTerminal": "T2",
+        "originGate": "F22",
+        "destGate": "K05",
+        "legs": [
+          { "from": "PEK", "to": "CAN", "depTime": "19:15", "arrTime": "22:30", "flightNo": "CZ3104" },
+          { "layoverCity": "广州", "layoverDuration": "1 小时 45 分" },
+          { "from": "CAN", "to": "PVG", "depTime": "00:15", "arrTime": "02:40", "flightNo": "CZ3541" }
+        ]
+      }
+    },
+    {
+      "id": "demo-pkx-sha-1",
+      "origin": "PKX",
+      "destination": "SHA",
+      "airlineName": "吉祥航空",
+      "airline": "HO",
+      "flightNumber": "HO1256",
+      "depTime": "09:40",
+      "arrTime": "11:55",
+      "route_label": "PKX→SHA",
+      "routeLabelVisual": "北京大兴 → 上海虹桥",
+      "stops": 0,
+      "price_cny": 798,
+      "cabin_prices": {
+        "economy": 798,
+        "premium_economy": 930,
+        "business": 1490,
+        "first": 1920
+      },
+      "source": "fliggy",
+      "durationLabel": "2 小时 15 分",
+      "baggageIncluded": true,
+      "refundLabel": "有条件退（示例）",
+      "changeLabel": "可改签（示例）",
+      "originTerminal": "T1",
+      "destTerminal": "T2",
+      "originGate": "A12",
+      "destGate": "B36",
+      "preview": {
+        "durationLabel": "2 小时 15 分",
+        "originAirportLine": "北京大兴国际机场（PKX）",
+        "destAirportLine": "上海虹桥国际机场（SHA）",
+        "legs": []
+      }
+    },
+    {
+      "id": "demo-can-syx-1",
+      "origin": "CAN",
+      "destination": "SYX",
+      "airlineName": "中国南航",
+      "airline": "CZ",
+      "flightNumber": "CZ6744",
+      "depTime": "07:50",
+      "arrTime": "09:55",
+      "route_label": "CAN→SYX",
+      "routeLabelVisual": "广州白云 → 三亚凤凰",
+      "stops": 0,
+      "price_cny": 520,
+      "cabin_prices": {
+        "economy": 520,
+        "premium_economy": 660,
+        "business": 980,
+        "first": 1290
+      },
+      "source": "demo",
+      "durationLabel": "2 小时 5 分",
+      "baggageIncluded": true,
+      "refundLabel": "按规则（示例）",
+      "changeLabel": "可改签（示例）",
+      "preview": {
+        "durationLabel": "2 小时 5 分",
+        "originAirportLine": "广州白云国际机场（CAN）",
+        "destAirportLine": "三亚凤凰国际机场（SYX）",
+        "legs": []
+      }
+    }
+  ]
+}
